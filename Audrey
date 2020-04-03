@@ -44,7 +44,7 @@ class Game //The game class will have the attributes:
     constructor(iMyScore, itScore, swOrl) //This class should have a constructor that receives all 3 parameters to populate the attributes.
     {
         //not sure if we have to call the parent class(Team)
-        super("G")//"G" is the type for Car
+        super("G")//"G" is the type for game
         this.myscore = iMyScore;
         this.theirscore = itScore;
         this.winOrloss = swOrl;
