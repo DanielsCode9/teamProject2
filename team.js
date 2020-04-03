@@ -5,7 +5,7 @@ class Team //The Team class should have the following instance variables:
     losses;//losses (int)
     winLossPct;//winLossPct (Double)
 
-    games = new Game();
+    games = new Game(); //games (array of Game objects)
 
     //AND the following methods:
 
