@@ -50,25 +50,23 @@ class Team //The Team class should have the following instance variables:
 
 class Game //The Game class will have the attributes:
 {
-    myScore; //myScore (int)
+    //myScore (int)
 
-    theirScore; //theirScore(int)
+    //theirScore(int)
 
-    winOrLoss; //winOrLoss (string of W or L)
+    //winOrLoss (string of W or L)
 
-    constructor(mScore, tScore, wOrL) //This class should have a constructor that receives all 3 parameters to populate the attributes.
+    constructor() //This class should have a constructor that receives all 3 parameters to populate the attributes.
     {
-        this.myScore = mScore;
-        this.theirScore = tScore;
-        this.winOrLoss = wOrL;
+       
     }
 }
 
 class BasketballTeam extends Team //The BasketballTeam class inherits from the Team class and add the following attributes:
 {
-    totalPointsFor; //totalPointsFor (int)
+    //totalPointsFor (int)
 
-    totalPointsAgainst; //totalPointsAgainst (int)
+   //totalPointsAgainst (int)
 
    // The BasketballTeam class should also have methods to do the following:
 
