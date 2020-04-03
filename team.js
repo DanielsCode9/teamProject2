@@ -1,4 +1,4 @@
-class Team //The Team class should have the following instance variables: 
+class Team(teamN, tName) //The Team class should have the following instance variables: 
 {
     teamName;//teamName (String)
     wins;//wins (int)
@@ -9,13 +9,13 @@ class Team //The Team class should have the following instance variables:
 
     //AND the following methods:
 
-    getTeam()
+    getTeam(tName)
     {
+        this.teamName = tName;
         //getTeam - when called, it returns the team name
-        return this.teamName;
     }
 
-    setTeam(tName)
+    setTeam()
     {
         //setTeam - when called, it receives a parameter that is used to set the instance variable teamName
         this.teamName = tName;
@@ -32,13 +32,13 @@ class Team //The Team class should have the following instance variables:
     getWins()
     {
         //getWins - when called it returns the number of wins
-        return this.wins;
+        this.wins;
     }
 
     getLosses()
     {
         //getLosses - when called it returns the number of losses
-        return this.losses;
+        this.losses;
     }
 
     calcWinLossPct()
@@ -113,13 +113,14 @@ function playGame()
 
     var oTeam = new Team();
     var aoTeam = [];
-    for(iCount = 0; iCount < 10; iCount++)
+    team.getTeam("byu");
+    for(iCount = 1; iCount <= 10; iCount++)
     {
-        aoTeam[iCount].teamName = document.getElementById("").innerHTML;
-        
+        aoTeam[iCount].teamName = document.getElementById(("n" + iCount)).innerHTML;
         
         aoTeam[iCount].games[iCount]
     }
+
  /*
 When the user clicks on the Play Game button you need to simulate an entire season.
 
