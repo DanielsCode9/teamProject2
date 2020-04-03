@@ -95,8 +95,7 @@ class BasketballTeam extends Team //The BasketballTeam class inherits from the T
 }
 
 function playGame()
-{
- /*
+{   /*
 When the user clicks on the Play Game button you need to simulate an entire season.
 
 You will first create an array of team objects for each team displayed on the html form in the WCC group.
