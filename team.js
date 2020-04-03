@@ -95,33 +95,22 @@ class BasketballTeam extends Team //The BasketballTeam class inherits from the T
 }
 
 function playGame()
-<<<<<<< HEAD
 {   
 
     //have an object array for teams
     //have an oject of team
     //in a for loop grap the contents of the li and store the data on the new objects using the attributes. 
-    
-    
-    
-    
-    
-    
-    
-    /*
-=======
-{
+
     var oTeam = new Team();
     var aoTeam = [];
-
-
-
     for(iCount = 0; iCount < 10; iCount++)
     {
-        aoTeam[iCount] =
+        aoTeam[iCount].teamName = document.getElementById("").innerHTML;
+        
+        
+        aoTeam[iCount].games[iCount]
     }
  /*
->>>>>>> 9fcddb643b5a495953f5e49dcd77aecb446adb92
 When the user clicks on the Play Game button you need to simulate an entire season.
 
 You will first create an array of team objects for each team displayed on the html form in the WCC group.
