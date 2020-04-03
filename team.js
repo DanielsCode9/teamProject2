@@ -99,6 +99,7 @@ class BasketballTeam extends Team //The BasketballTeam class inherits from the T
 }
 
 function playGame()
+<<<<<<< HEAD
 {
     var oTeam = new Team();
     var aoTeam = [];
@@ -110,6 +111,9 @@ function playGame()
         aoTeam[iCount] =
     }
  /*
+=======
+{   /*
+>>>>>>> dc82f28e56d5c3f1881c66c27aa3ff57c21b0cbf
 When the user clicks on the Play Game button you need to simulate an entire season.
 
 You will first create an array of team objects for each team displayed on the html form in the WCC group.
