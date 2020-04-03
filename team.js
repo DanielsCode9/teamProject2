@@ -5,11 +5,7 @@ class Team //The Team class should have the following instance variables:
     losses;//losses (int)
     winLossPct;//winLossPct (Double)
 
-<<<<<<< Updated upstream
-    games = new Game(); //games (array of Game objects)
-=======
     games = []; //new Game();
->>>>>>> Stashed changes
 
     //AND the following methods:
 
@@ -99,21 +95,17 @@ class BasketballTeam extends Team //The BasketballTeam class inherits from the T
 }
 
 function playGame()
-<<<<<<< HEAD
 {
     var oTeam = new Team();
     var aoTeam = [];
 
-    
+
 
     for(iCount = 0; iCount < 10; iCount++)
     {
         aoTeam[iCount] =
     }
  /*
-=======
-{   /*
->>>>>>> dc82f28e56d5c3f1881c66c27aa3ff57c21b0cbf
 When the user clicks on the Play Game button you need to simulate an entire season.
 
 You will first create an array of team objects for each team displayed on the html form in the WCC group.
