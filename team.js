@@ -50,15 +50,19 @@ class Team //The Team class should have the following instance variables:
 
 class Game //The Game class will have the attributes:
 {
-    //myScore (int)
+    myscore; //my team score (int)
 
-    //theirScore(int)
+    theirscore; //opp team score(int)
 
-    //winOrLoss (string of W or L)
+    winOrloss; //winOrLoss (string for Wins or Losses)
 
-    constructor() //This class should have a constructor that receives all 3 parameters to populate the attributes.
+    constructor(iMyScore, itScore, swOrl) //This class should have a constructor that receives all 3 parameters to populate the attributes.
     {
-       
+        //not sure if we have to call the parent class(Team)
+        super("G")//"G" is the type for game
+        this.myscore = iMyScore;
+        this.theirscore = itScore;
+        this.winOrloss = swOrl;
     }
 }
 
