@@ -106,13 +106,13 @@ function playGame()
     var oTeam = new Team();
     var aoTeam = [];
     team.getTeam("byu");
-    for(iCount = 0; iCount < 10; iCount++)
+    for(iCount = 1; iCount <= 10; iCount++)
     {
-        aoTeam[iCount].teamName = document.getElementById("").innerHTML;
-        
+        aoTeam[iCount].teamName = document.getElementById(("n" + iCount)).innerHTML;
         
         aoTeam[iCount].games[iCount]
     }
+
  /*
 When the user clicks on the Play Game button you need to simulate an entire season.
 
