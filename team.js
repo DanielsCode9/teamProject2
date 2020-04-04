@@ -1,4 +1,4 @@
-class Team(teamN, tName) //The Team class should have the following instance variables: 
+class Team //The Team class should have the following instance variables: 
 {
     teamName; //teamName (String)
     wins; //wins (int)
