@@ -7,7 +7,12 @@ class Team //The Team class should have the following instance variables:
     games = []; //new Game();
    // this.wins = 0;
    // this.losses = 0;
-    
+    constructor()
+    {
+        this.wins = 0;
+        this.losses = 0;
+        this.winLossPct = 0;
+    }
 
     //AND the following methods:
 
@@ -19,7 +24,6 @@ class Team //The Team class should have the following instance variables:
 
     setTeam(tName)
     {
-
         //setTeam - when called, it receives a parameter that is used to set the instance variable teamName
         this.teamName = tName;
     }
@@ -77,10 +81,10 @@ class BasketballTeam extends Team
     totalPointsFor;
     totalPointsAgainst;
 
-    constructor(tName, numWins, numLosses)//do we need to populate with anything else at the beginning
+    constructor()//do we need to populate with anything else at the beginning
         {
-        super(tName, numWins, numLosses)
         //we still need percentage variable and games array variable
+        super();
         this.totalPointsFor = 0;
         this.totalPointsAgainst = 0;
         }
@@ -111,6 +115,10 @@ function playGame()
 {   
     var aoBasketballTeam = [];
     var liID; 
+    var holdTeam;
+    var aiTeamOneScore = [];
+    var aiTeamTwoScore = [];
+    var sOutput = "";
 
     for (let iListId = 0; iListId < 10; iListId++) { //loop to gather all the team names
         oBasketball = new BasketballTeam();
@@ -123,14 +131,10 @@ function playGame()
         
     }
 
-    for (var iCountOne = 0; iCountOne < 10; iCountOne++)
+    for (iCountOne = 0; iCountOne < 10; iCountOne++)
     {
-        var aiTeamOneScore = [];
-        var aiTeamTwoScore = [];
-        var sOutput = "";
-
         //for loop to create scores for both myTeam and Opp array, compare, and calc overtime in sub loop
-        for (var iCountTwo = 1; iCountTwo < 10; iCountTwo++) {
+        for (iCountTwo = 1; iCountTwo < 10; iCountTwo++) {
             aoBasketballTeam[iCountOne].getTeam();
             aoBasketballTeam[iCountTwo].getTeam();
 
@@ -217,14 +221,7 @@ function playGame()
         }
         //--->WE STILL NEED TO DO A BUBBLE SORT OF THE ARRAYS
 
-        aoBasketballTeam[iCountOne].games[iCountOne];
-
-        
-        }
-        let holdTeam;
-        let iInner;
-        let iOuter;
-        let sFinished = "";
+       // aoBasketballTeam[iCountOne].games[iCountOne];
 
         for (iOuter = 0; iOuter < (aoBasketballTeam.length - 1); iOuter++)
             {
@@ -232,16 +229,15 @@ function playGame()
                     {
                         if (aoBasketballTeam[iInner].wins > aoBasketballTeam[iOuter].wins)
                             {
-                                holdTeam = aoBasketballTeam[iOuter]
-                                aoBasketballTeam[iOuter] = aoBasketballTeam[iInner]
-                                aoBasketballTeam[iOuter] = holdTeam
+                                holdTeam = aoBasketballTeam[iOuter];
+                                aoBasketballTeam[iOuter] = aoBasketballTeam[iInner];
+                                aoBasketballTeam[iInner] = holdTeam;
                             }
                     }
-                    sFinished = sFinished + aoBasketballTeam[iOuter] + "<br>";
+                    sOutput = sOutput + aoBasketballTeam[iOuter] + "<br>";
             }
         
-        document.getElementById("output").innerHTML = sFinished
-
+        document.getElementById("output").innerHTML = sOutput;
     }
         /*
 When the user clicks on the Play Game button you need to simulate an entire season.
