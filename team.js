@@ -4,8 +4,9 @@ class Team //The Team class should have the following instance variables:
     wins; //wins (int)
     losses; //losses (int)
     winLossPct; //winLossPct (Double)
-
     games = []; //new Game();
+
+    
 
     //AND the following methods:
 
@@ -75,12 +76,14 @@ class BasketballTeam extends Team
     totalPointsFor;
     totalPointsAgainst;
 
-    constructor(iTotalPointsFor, iTotalPointsAgainst)
+    this.totalPointsFor = 0;
+    this.totalPointsAgainst = 0;
+/* constructor(iTotalPointsFor, iTotalPointsAgainst)
     {
         //super(sTeamName, iWins, iLosses, iWinLossPct, aoGames);
         this.totalPointsFor = iTotalPointsFor;
         this.totalPointsAgainst = iTotalPointsAgainst;
-    }
+    } */
 
    addPointsFor(iTotalPointsFor)
    {
@@ -103,22 +106,22 @@ function playGame()
     //have an object array for teams
     //have an oject of team
     //in a for loop grap the contents of the li and store the data on the new objects using the attributes. 
-    var aoTeam = [];
+    var aoBasketballTeam = [];
     var liID; 
 
     for (let iListId = 0; iListId < 10; iListId++) { //loop to gather all the team names
-        oTeam = new Team();
-        aoTeam[iListId] = oTeam;
+        oBasketball = new BasketballTeam();
+        aoBasketballTeam[iListId] = oBasketball;
 
         liID = ("n" + (iCountOne+1)); //variable that changes with iCountOne to change which id tag the function chooses
-        aoTeam[iListId].teamName = document.getElementById(liID).innerHTML;
+        aoBasketballTeam[iListId].teamName = document.getElementById(liID).innerHTML;
     }
 
     for (iCountOne = 0; iCountOne < 10; iCountOne++)
     {
         //Used throughout function
-        var aiMyScore = [];
-        var aiOppScore = [];
+        var aiTeamOneScore = [];
+        var aiTeamTwoScore = [];
 
         //used when calculating score and for keeping track of what to say in output for each game
         //var iLossCount = 0; //used to keep track of num losses within loop
@@ -131,48 +134,77 @@ function playGame()
         var iWinPercentage;
 
         //for loop to create scores for both myTeam and Opp array, compare, and calc overtime in sub loop
-        for  iCountTwo = 1; iCountTwo < 10; iCountTwo++) {
-            aoTeam[iCountOne].getTeam();
-            aoTeam[iCountTwo].getTeam();
+        for (iCountTwo = 1; iCountTwo < 10; iCountTwo++) {
+            aoBasketballTeam[iCountOne].getTeam();
+            aoBasketballTeam[iCountTwo].getTeam();
 
             //use mod to determine odd (i % 2 == 1; away) or even (i % 2 == 0; home)
-            aiMyScore[iCountOne] = Math.floor((Math.random() * 101)) + 5; //I put * 101 because the score needs to be between 0 and 100
-            aiOppScore[iCountOne] = Math.floor((Math.random() * 101));
+            aiTeamOneScore[iCountOne] = Math.floor((Math.random() * 101)) + 5; //I put * 101 because the score needs to be between 0 and 100
+            aiTeamTwoScore[iCountOne] = Math.floor((Math.random() * 101));
             
             
-            aiMyScore.push(Math.floor((Math.random() * 101)));
-            aiOppScore.push(Math.floor((Math.random() * 101)) + 5);
+            aiTeamOneScore.push(Math.floor((Math.random() * 101)));
+            aiTeamTwoScore.push(Math.floor((Math.random() * 101)) + 5);
 
             //while two scores are even execute loop until they aren't
-            while (aiMyScore[iCountOne] == aiOppScore[iCountOne]) {
-                aiMyScore[iCountOne] = aiMyScore[iCountOne] + Math.floor((Math.random() * 16)); //put 16 so the score would be from 0 to 15
-                aiOppScore[iCountOne] = aiOppScore[iCountOne] + Math.floor((Math.random() * 16));
+            while (aiTeamOneScore[iCountOne] == aiTeamTwoScore[iCountOne]) {
+                aiTeamOneScore[iCountOne] = aiTeamOneScore[iCountOne] + Math.floor((Math.random() * 16)); //put 16 so the score would be from 0 to 15
+                aiTeamTwoScore[iCountOne] = aiTeamTwoScore[iCountOne] + Math.floor((Math.random() * 16));
             }
 
-            while (aiMyScore[iCountTwo] == aiOppScore[iCountTwo]) {
-                aiMyScore[iCountTwo] = aiMyScore[iCountTwo] + Math.floor((Math.random() * 16)); //put 16 so the score would be from 0 to 15
-                aiOppScore[iCountTwo] = aiOppScore[iCountTwo] + Math.floor((Math.random() * 16));
+            while (aiTeamOneScore[iCountTwo] == aiTeamTwoScore[iCountTwo]) {
+                aiTeamOneScore[iCountTwo] = aiTeamOneScore[iCountTwo] + Math.floor((Math.random() * 16)); //put 16 so the score would be from 0 to 15
+                aiTeamTwoScore[iCountTwo] = aiTeamTwoScore[iCountTwo] + Math.floor((Math.random() * 16));
             }
+
+            aoBasketballTeam[iCountOne].addPointsFor(aiTeamOneScore[iCount]); //first team object uses a method to add their points for the first game score
+            aoBasketballTeam[iCountOne].addPointsAgainst(aiTeamTwoScore[iCount]);//first team object uses a method to update the points against
+            aoBasketballTeam[iCountOne].addPointsFor(aiTeamOneScore[(iCount + 1)]);//first team object uses a method to update the points for its second game. 
+            aoBasketballTeam[iCountOne].addPointsAgainst(aiTeamTwoScore[(iCount + 1)]);//first team object uses a method to update the points for their oppenent for the second team.
+            
+            aoBasketballTeam[(iCount + 1)].addPointsFor(aiTeamTwoScore[iCount]);//second team object uses a method to add their points for the first game score
+            aoBasketballTeam[(iCount + 1)].addPointsAgainst(aiTeamOneScore[(iCount)]);//Second team object uses a method to update the points against
+            aoBasketballTeam[(iCount + 1)].addPointsFor(aiTeamTwoScore[iCount]);//Second team object uses a method to update the points for its second game. 
+            aoBasketballTeam[(iCount + 1)].addPointsAgainst(aiTeamOneScore[(iCount + 1)]);//Second team object uses a method to update the points for their oppenent for the second team.
+           
 
             //now time to calc the winner of two teams
-            if (aiMyScore[iCountOne] < aiOppScore[iCountOne]) 
+            if (aiTeamOneoScore[iCountOne] < aiTeamTwoScore[iCountOne]) 
             {
-                oGame = new Game(aiMyScore[iCountOne], aiOppScore[iCountOne], "loss");
-                aoTeam[iCountOne].games.push(oGame);
-
-                aoTeam[iCountOne].myScore = aiMyScore
-                iLossCount++;
+                oGame1 = new Game(aiTeamOneScore[iCountOne], aiTeamTwoScore[iCountOne], "loss");
+                oGame2 = new Game(aiTeamTwoScore[iCountOne], aiTeamOneScore[iCountOne], "win");
+                aoBasketballTeam[iCountOne].games.push(oGame1);
+                aoBasketballTeam[iCountTwo].games.push(oGame2);
+ 
+                //aoBasketballTeam[iCountOne].myScore = aiTeamOneScore
+             
             } else {
-                oGame = new Game(aiOppScore[iCountOne], aiMyScore[iCountOne], "win");
-                aoTeam[iCountTwo].games.push(oGame);
-                iWinCount++;
+               oGame1 = new Game(aiTeamOneScore[iCountOne], aiTeamTwoScore[iCountOne], "win");
+                oGame2 = new Game(aiTeamTwoScore[iCountOne], aiTeamOneScore[iCountOne], "win");
+                aoBasketballTeam[iCountOne].games.push(oGame1);            }
+
+            //if statement for the second team to be given to the oteam and ogame functions
+            if (aiTeamOneScore[(iCountOne + 1)] < aiTeamTwoScore[(iCountOne + 1)]) 
+            {
+                oGame1 = new Game(aiTeamOneScore[(iCountOne + 1)], aiTeamTwoScore[iCountOne + 1], "loss");
+                oGame2 = new Game(aiTeamTwoScore[(iCountOne + 1)], aiTeamOneScore[(iCountOne + 1)], "win");
+                aoBasketballTeam[iCountOne].games.push(oGame1);
+                aoBasketballTeam[iCountTwo].games.push(oGame2);
+                //aoBasketballTeam[iCountOne].myScore = aiTeamOneScore
+             
+            } else {
+                oGame1 = new Game(aiTeamOneScore[(iCountOne + 1)], aiTeamTwoScore[(iCountOne + 1)], "win");
+                oGame2 = new Game(aiTeamTwoScore[(iCountOne + 1)], aiTeamOneScore[(iCountOne + 1)], "win");
+                aoBasketballTeam[iCountOne].games.push(oGame1);
+                aoBasketballTeam[iCountTwo].games.push(oGame2);
             }
+            
         }
 
         iWinPercentage = Number((iWinCount / iNumGames) * 100).toFixed(1);
 
 
-        aoTeam[iCount].games[iCount]
+        aoBasketballTeam[iCount].games[iCount]
 
 
         /*
