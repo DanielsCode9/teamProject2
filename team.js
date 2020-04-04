@@ -113,7 +113,6 @@ function playGame()
 
     var oTeam = new Team();
     var aoTeam = [];
-<<<<<<< HEAD
     var liID;
 
     for(iCount = 0; iCount < 10; iCount++)
@@ -122,12 +121,11 @@ function playGame()
         
         aoTeam[iCount].teamName = document.getElementById("liID").innerHTML;
         
-=======
+
     team.getTeam("byu");
     for(iCount = 1; iCount <= 10; iCount++)
     {
         aoTeam[iCount].teamName = document.getElementById(("n" + iCount)).innerHTML;
->>>>>>> 7684efa4519cde9bbf4b78848ca3a2594d9b5816
         
         aoTeam[iCount].games[iCount]
     }
