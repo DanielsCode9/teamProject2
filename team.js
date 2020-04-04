@@ -1,4 +1,4 @@
-class Team //The Team class should have the following instance variables: 
+class Team(teamN, tName) //The Team class should have the following instance variables: 
 {
     teamName;//teamName (String)
     wins;//wins (int)
@@ -9,13 +9,13 @@ class Team //The Team class should have the following instance variables:
 
     //AND the following methods:
 
-    getTeam()
+    getTeam(tName)
     {
+        this.teamName = tName;
         //getTeam - when called, it returns the team name
-        return this.teamName;
     }
 
-    setTeam(tName)
+    setTeam()
     {
         //setTeam - when called, it receives a parameter that is used to set the instance variable teamName
         this.teamName = tName;
@@ -32,13 +32,13 @@ class Team //The Team class should have the following instance variables:
     getWins()
     {
         //getWins - when called it returns the number of wins
-        return this.wins;
+        this.wins;
     }
 
     getLosses()
     {
         //getLosses - when called it returns the number of losses
-        return this.losses;
+        this.losses;
     }
 
     calcWinLossPct()
@@ -47,6 +47,8 @@ class Team //The Team class should have the following instance variables:
 
     }
 }
+
+
 
 class Game //The Game class will have the attributes:
 {
@@ -66,35 +68,41 @@ class Game //The Game class will have the attributes:
     }
 }
 
-class BasketballTeam extends Team //The BasketballTeam class inherits from the Team class and add the following attributes:
+
+
+//JADEN
+//The BasketballTeam class inherits from the Team class and adds it's own attributes to track the total points for and against teams.
+//The total points for and against teams is tracked using two separate methods that receive integer paramaters and and add them to the instance variables.
+//The third and final method returns a string to display the "total points for" and "total points against" values using instance variables.
+class BasketballTeam extends Team
 {
-    //totalPointsFor (int)
+    totalPointsFor;
+    totalPointsAgainst;
 
-   //totalPointsAgainst (int)
+    constructor(sTeamName, iWins, iLosses, iWinLossPct, aoGames, iTotalPointsFor, iTotalPointsAgainst)
+    {
+        super(sTeamName, iWins, iLosses, iWinLossPct, aoGames);
+        this.totalPointsFor = iTotalPointsFor;
+        this.totalPointsAgainst = iTotalPointsAgainst;
+    }
 
-   // The BasketballTeam class should also have methods to do the following:
-
-   addPointsFor()
+   addPointsFor(iTotalPointsFor)
    {
-        //when called receives an int parameter. This value is added to the TotalPointsFor instance variable
+        this.totalPointsFor = this.totalPointsFor + iTotalPointsFor
    }
 
-   addPointsAgainst()
+   addPointsAgainst(iTotalPointsAgainst)
    {
-        //when called receives an int parameter. This value is added to the TotalPointsAgainst instance variable
+        this.totalPointsAgainst = this.totalPointsAgainst + iTotalPointsAgainst
    }
 
    getAllPoints()
    {
-        //when called this method returns a string with the totalPointsFor and the totalPointsAgainst like the following:
-
-        //Points for XX and Points Against XX
-        //where XX is the values of the instance variables.
-
-
-        //The child class should make the proper calls to the parent class (as needed)
+        return("Total points for: " + this.totalPointsFor + "\n" + "Total points against: " + this.totalPointsAgainst);
    }
 }
+
+
 
 function playGame()
 {   
@@ -105,6 +113,7 @@ function playGame()
 
     var oTeam = new Team();
     var aoTeam = [];
+<<<<<<< HEAD
     var liID;
 
     for(iCount = 0; iCount < 10; iCount++)
@@ -113,9 +122,16 @@ function playGame()
         
         aoTeam[iCount].teamName = document.getElementById("liID").innerHTML;
         
+=======
+    team.getTeam("byu");
+    for(iCount = 1; iCount <= 10; iCount++)
+    {
+        aoTeam[iCount].teamName = document.getElementById(("n" + iCount)).innerHTML;
+>>>>>>> 7684efa4519cde9bbf4b78848ca3a2594d9b5816
         
         aoTeam[iCount].games[iCount]
     }
+
  /*
 When the user clicks on the Play Game button you need to simulate an entire season.
 
