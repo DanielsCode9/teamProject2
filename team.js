@@ -7,17 +7,11 @@ class Team //The Team class should have the following instance variables:
 
     games = []; //new Game();
 
-    constructor(Wins, Losses)
-    {
-        this.wins = Wins;
-        this.losses = Losses;
-    }
-
     //AND the following methods:
 
     getTeam()
     {
-        return this.teamName = tName;
+        return this.teamName;
         //getTeam - when called, it returns the team name
     }
 
@@ -45,10 +39,12 @@ class Team //The Team class should have the following instance variables:
         return this.losses;
     }
 
-    calcWinLossPct() {
+    calcWinLossPct(NewWins, NewLosses) {
         //calcWinLossPct - calculates and updates the winLossPct attribute
-
-
+        this.wins = this.wins + NewWins;
+        this.losses = this.losses + NewLosses;
+        this.winLossPct = (this.wins/ this.losses);
+        return this.winLossPct;
     }
 }
 
@@ -62,43 +58,13 @@ class Game //The Game class will have the attributes:
 
     winOrloss; //winOrLoss (string for Wins or Losses)
 
-    constructor(iMyScore, itScore, swOrl) //This class should have a constructor that receives all 3 parameters to populate the attributes.
+    constructor(iMyScore, itScore, wOrL) //This class should have a constructor that receives all 3 parameters to populate the attributes.
     {
-        //not sure if we have to call the parent class(Team)
-
-        super("G") //"G" is the type for game
-        //super("G")//"G" is the type for game
         this.myscore = iMyScore;
         this.theirscore = itScore;
-        this.winOrloss = swOrl;
+        this.winOrloss = wOrL;
     }
 }
-
-
-    //totalPointsAgainst (int)
-
-    // The BasketballTeam class should also have methods to do the following:
-
-    addPointsFor() {
-        //when called receives an int parameter. This value is added to the TotalPointsFor instance variable
-    }
-
-    addPointsAgainst() {
-        //when called receives an int parameter. This value is added to the TotalPointsAgainst instance variable
-    }
-
-    getAllPoints() {
-        //when called this method returns a string with the totalPointsFor and the totalPointsAgainst like the following:
-
-        //Points for XX and Points Against XX
-        //where XX is the values of the instance variables.
-
-
-        //The child class should make the proper calls to the parent class (as needed)
-    }
-}
-
-function playGame() {
 
 //JADEN
 //The BasketballTeam class inherits from the Team class and adds it's own attributes to track the total points for and against teams.
@@ -109,53 +75,47 @@ class BasketballTeam extends Team
     totalPointsFor;
     totalPointsAgainst;
 
-    constructor(sTeamName, iWins, iLosses, iWinLossPct, aoGames, iTotalPointsFor, iTotalPointsAgainst)
+    constructor(iTotalPointsFor, iTotalPointsAgainst)
     {
-        super(sTeamName, iWins, iLosses, iWinLossPct, aoGames);
+        //super(sTeamName, iWins, iLosses, iWinLossPct, aoGames);
         this.totalPointsFor = iTotalPointsFor;
         this.totalPointsAgainst = iTotalPointsAgainst;
     }
 
    addPointsFor(iTotalPointsFor)
    {
-        this.totalPointsFor = this.totalPointsFor + iTotalPointsFor
+        this.totalPointsFor = this.totalPointsFor + iTotalPointsFor;
    }
 
    addPointsAgainst(iTotalPointsAgainst)
    {
-        this.totalPointsAgainst = this.totalPointsAgainst + iTotalPointsAgainst
+        this.totalPointsAgainst = this.totalPointsAgainst + iTotalPointsAgainst;
    }
 
    getAllPoints()
    {
-        return("Total points for: " + this.totalPointsFor + "\n" + "Total points against: " + this.totalPointsAgainst);
+        return("Total points for: " + this.totalPointsFor + "<br>" + "Total points against: " + this.totalPointsAgainst);
    }
-}
-
-
+}//// the parent does not have a constructor so we do not need to call super
 
 function playGame()
 {   
-
-
     //have an object array for teams
     //have an oject of team
     //in a for loop grap the contents of the li and store the data on the new objects using the attributes. 
 
     var aoTeam = [];
-    var liID;
+    var oTeam;
+    var liID; 
 
-    for(iCount = 0; iCount < 10; iCount++)
+    for (iCountOne = 0; iCountOne < 10; iCountOne++)
     {
-        liID = ("n" + (iCount+1)); 
+        liID = ("n" + (iCountOne+1)); 
         
-        aoTeam[iCount].teamName = document.getElementById("liID").innerHTML;
+        aoTeam[iCountOne].teamName = document.getElementById(liID).innerHTML;
 
-        getTeam(aoTeam[iCount].teamName);
+        getTeam(aoTeam[iCountOne].teamName);
 
-        var sMyTeam = document.getElementById("teamName").value;
-
-        for (let iCount = 0; )
         //Used throughout function
         var aiMyScore = [];
         var aiOppScore = [];
@@ -170,7 +130,7 @@ function playGame()
         var iWinPercentage;
 
         //for loop to create scores for both myTeam and Opp array, compare, and calc overtime in sub loop
-        for (let i = 0; i < iNumGames; i++) {
+        for (let iCountTwo = 0; iCountTwo < iNumGames; iCountTwo++) {
             if (i % 2 == 0) { //use mod to determine odd (i % 2 == 1; away) or even (i % 2 == 0; home)
                 aiMyScore[i] = Math.floor((Math.random() * 101)) + 5; //I put * 101 because the score needs to be between 0 and 100
                 aiOppScore[i] = Math.floor((Math.random() * 101));
@@ -219,7 +179,10 @@ When the user clicks on the Play Game button you need to simulate an entire seas
 
 You will first create an array of team objects for each team displayed on the html form in the WCC group.
 
-Each team will play the other team 2 times, once as the home team and once as the visitor. The home team gets an extra 5 points. You will generate random numbers for each of the teams from 0 to 100. If there is a tie, you will play an overtime that generates a new random number score up to 15 points. This score will be added to the previous score. Do NOT add the extra bonus of 5 points for home teams during the overtime portion. If there is another tie, do another overtime period generating 2 new random numbers and adding it to the total score. Keep doing this until there is no tie.
+Each team will play the other team 2 times, once as the home team and once as the visitor. The home team gets an extra 5 points. 
+You will generate random numbers for each of the teams from 0 to 100. 
+If there is a tie, you will play an overtime that generates a new random number score up to 15 points. 
+This score will be added to the previous score. Do NOT add the extra bonus of 5 points for home teams during the overtime portion. If there is another tie, do another overtime period generating 2 new random numbers and adding it to the total score. Keep doing this until there is no tie.
 
 When the game is over you will update the totalPointsFor and the totalPointsAgainst attributes by calling the methods (NOT using the attribute).
 
@@ -228,6 +191,8 @@ You will also update the wins and the losses for each team as a game is complete
 You will also need to add a new game object to the games attribute for the team and make sure the constructor is appropriately called to populate myScore, theirScore, and winOrLoss.
 
 Each team will play the other teams in the list 2 times but they will not play each other more than that.
+
+____
 
 Once the season is over you will sort the arrays based upon the wins and display all of the teams dynamically to the output "p" tag.
 
