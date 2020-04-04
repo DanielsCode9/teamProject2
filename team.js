@@ -1,48 +1,42 @@
 class Team(teamN, tName) //The Team class should have the following instance variables: 
 {
-    teamName;//teamName (String)
-    wins;//wins (int)
-    losses;//losses (int)
-    winLossPct;//winLossPct (Double)
+    teamName; //teamName (String)
+    wins; //wins (int)
+    losses; //losses (int)
+    winLossPct; //winLossPct (Double)
 
     games = []; //new Game();
 
     //AND the following methods:
 
-    getTeam(tName)
-    {
+    getTeam(tName) {
         this.teamName = tName;
         //getTeam - when called, it returns the team name
     }
 
-    setTeam()
-    {
+    setTeam() {
         //setTeam - when called, it receives a parameter that is used to set the instance variable teamName
         this.teamName = tName;
     }
 
-    setWinsLosses(numWins, numLosses)
-    {
+    setWinsLosses(numWins, numLosses) {
         //setWinsLosses - when called it receives TWO parameters used to set the wins and the losses instance variables. Wins is the first parameter and Losses is the second parameter. This method will also calculate the winLossPct Instance variable.
         this.wins = numWins;
         this.losses = numLosses;
-        this.winLossPct = (this.wins/this.losses);
+        this.winLossPct = (this.wins / this.losses);
     }
 
-    getWins()
-    {
+    getWins() {
         //getWins - when called it returns the number of wins
         this.wins;
     }
 
-    getLosses()
-    {
+    getLosses() {
         //getLosses - when called it returns the number of losses
         this.losses;
     }
 
-    calcWinLossPct()
-    {
+    calcWinLossPct() {
         //calcWinLossPct - calculates and updates the winLossPct attribute
 
     }
@@ -59,7 +53,7 @@ class Game //The Game class will have the attributes:
     constructor(iMyScore, itScore, swOrl) //This class should have a constructor that receives all 3 parameters to populate the attributes.
     {
         //not sure if we have to call the parent class(Team)
-        super("G")//"G" is the type for game
+        super("G") //"G" is the type for game
         this.myscore = iMyScore;
         this.theirscore = itScore;
         this.winOrloss = swOrl;
@@ -70,22 +64,19 @@ class BasketballTeam extends Team //The BasketballTeam class inherits from the T
 {
     //totalPointsFor (int)
 
-   //totalPointsAgainst (int)
+    //totalPointsAgainst (int)
 
-   // The BasketballTeam class should also have methods to do the following:
+    // The BasketballTeam class should also have methods to do the following:
 
-   addPointsFor()
-   {
+    addPointsFor() {
         //when called receives an int parameter. This value is added to the TotalPointsFor instance variable
-   }
+    }
 
-   addPointsAgainst()
-   {
+    addPointsAgainst() {
         //when called receives an int parameter. This value is added to the TotalPointsAgainst instance variable
-   }
+    }
 
-   getAllPoints()
-   {
+    getAllPoints() {
         //when called this method returns a string with the totalPointsFor and the totalPointsAgainst like the following:
 
         //Points for XX and Points Against XX
@@ -93,27 +84,84 @@ class BasketballTeam extends Team //The BasketballTeam class inherits from the T
 
 
         //The child class should make the proper calls to the parent class (as needed)
-   }
+    }
 }
 
-function playGame()
-{   
+function playGame() {
 
     //have an object array for teams
     //have an oject of team
     //in a for loop grap the contents of the li and store the data on the new objects using the attributes. 
 
-    var oTeam = new Team();
     var aoTeam = [];
-    team.getTeam("byu");
-    for(iCount = 1; iCount <= 10; iCount++)
-    {
+    //team.getTeam("byu");
+    for (let iCount = 1; iCount <= 10; iCount++) {
+        var oTeam = new Team();
         aoTeam[iCount].teamName = document.getElementById(("n" + iCount)).innerHTML;
-        
-        aoTeam[iCount].games[iCount]
-    }
+        getTeam(aoTeam[iCount].teamName);
 
- /*
+        var sMyTeam = document.getElementById("teamName").value;
+
+        for (let iCount = 0; )
+        //Used throughout function
+        var aiMyScore = [];
+        var aiOppScore = [];
+
+        //used when calculating score and for keeping track of what to say in output for each game
+        var iLossCount = 0; //used to keep track of num losses within loop
+        var iWinCount = 0; //used to keep track of num wis within loop
+        var asOutput = [];
+
+        //Usec in last part of each iteration of top for loop
+        var sOutput = "";
+        var iWinPercentage;
+
+        //for loop to create scores for both myTeam and Opp array, compare, and calc overtime in sub loop
+        for (let i = 0; i < iNumGames; i++) {
+            if (i % 2 == 0) { //use mod to determine odd (i % 2 == 1; away) or even (i % 2 == 0; home)
+                aiMyScore[i] = Math.floor((Math.random() * 101)) + 5; //I put * 101 because the score needs to be between 0 and 100
+                aiOppScore[i] = Math.floor((Math.random() * 101));
+            } else {
+                aiMyScore[i] = Math.floor((Math.random() * 101));
+                aiOppScore[i] = Math.floor((Math.random() * 101)) + 5;
+            }
+
+            var iOTCount = 0; //I declared inside loop to keep at zero each run through
+            var sOTOutput = "";
+
+            //while two scores are even execute loop until they aren't
+            while (aiMyScore[i] == aiOppScore[i]) {
+                aiMyScore[i] = aiMyScore[i] + Math.floor((Math.random() * 16)); //put 16 so the score would be from 0 to 15
+                aiOppScore[i] = aiOppScore[i] + Math.floor((Math.random() * 16));
+                aiNumOT[i] = iOTCount + 1;
+                sOTOutput = " with " + aiNumOT[i] + " OT ";
+                iOTCount++;
+            }
+
+            //now time to calc the winner of two teams
+            if (aiMyScore[i] < aiOppScore[i]) {
+                iLossCount++;
+                asOutput[i] = " and Loses";
+            } else {
+                iWinCount++;
+                asOutput[i] = " and Wins";
+            }
+
+            //plug all this into output
+            if (i == 0) {
+                sOutput = sMyTeam + ": " + aiMyScore[i] + "-" + aiOppScore[i] + sOTOutput + asOutput[i];
+            } else {
+                sOutput = sOutput + "<br>" + sMyTeam + ": " + aiMyScore[i] + "-" + aiOppScore[i] + sOTOutput + asOutput[i];
+            }
+        }
+
+        iWinPercentage = Number((iWinCount / iNumGames) * 100).toFixed(1);
+
+
+        aoTeam[iCount].games[iCount]
+
+
+        /*
 When the user clicks on the Play Game button you need to simulate an entire season.
 
 You will first create an array of team objects for each team displayed on the html form in the WCC group.
@@ -132,71 +180,4 @@ Once the season is over you will sort the arrays based upon the wins and display
 
 Make sure you use arrays of objects. Make sure you add appropriate comments. The assignment requirements are worth 90% so go the extra mile and make it look good for the extra 10 points.
  */
-}
-
-function playGame() {
-    var iNumGames = parseInt(document.getElementById("games").value);
-    var sMyTeam = document.getElementById("teamName").value;
-
-    //Used throughout function
-    var aiMyScore = [];
-    var aiOppScore = [];
-
-    //Used in overtime loop
-    var aiNumOT = [];
-
-    //used when calculating score and for keeping track of what to say in output for each game
-    var iLossCount = 0; //used to keep track of num losses within loop
-    var iWinCount = 0; //used to keep track of num wis within loop
-    var asOutput = [];
-
-    //Usec in last part of each iteration of top for loop
-    var sOutput = "";
-    var iWinPercentage;
-
-    //for loop to create scores for both myTeam and Opp array, compare, and calc overtime in sub loop
-    for (let i = 0; i < iNumGames; i++) {
-        if (i % 2 == 0) { //use mod to determine odd (i % 2 == 1; away) or even (i % 2 == 0; home)
-            aiMyScore[i] = Math.floor((Math.random() * 101)) + 5; //I put * 101 because the score needs to be between 0 and 100
-            aiOppScore[i] = Math.floor((Math.random() * 101));
-        } else {
-            aiMyScore[i] = Math.floor((Math.random() * 101));
-            aiOppScore[i] = Math.floor((Math.random() * 101)) + 5;
-        }
-
-        var iOTCount = 0; //I declared inside loop to keep at zero each run through
-        var sOTOutput = "";
-
-        //while two scores are even execute loop until they aren't
-        while (aiMyScore[i] == aiOppScore[i]) {
-            aiMyScore[i] = aiMyScore[i] + Math.floor((Math.random() * 16)); //put 16 so the score would be from 0 to 15
-            aiOppScore[i] = aiOppScore[i] + Math.floor((Math.random() * 16));
-            aiNumOT[i] = iOTCount + 1;
-            sOTOutput = " with " + aiNumOT[i] + " OT ";
-            iOTCount++;
-        }
-
-        //now time to calc the winner of two teams
-        if (aiMyScore[i] < aiOppScore[i]) {
-            iLossCount++;
-            asOutput[i] = " and Loses";
-        } else {
-            iWinCount++;
-            asOutput[i] = " and Wins";
-        }
-
-        //plug all this into output
-        if (i == 0) {
-            sOutput = sMyTeam + ": " + aiMyScore[i] + "-" + aiOppScore[i] + sOTOutput + asOutput[i];
-        } else {
-            sOutput = sOutput + "<br>" + sMyTeam + ": " + aiMyScore[i] + "-" + aiOppScore[i] + sOTOutput + asOutput[i];
-        }
     }
-
-    iWinPercentage = Number((iWinCount / iNumGames) * 100).toFixed(1);
-
-    sOutput = sOutput + "<br><br>" + sMyTeam + " record is " + iWinCount + "-" + iLossCount + " with a winning pct of " + iWinPercentage + "%";
-
-    //Assign the contents of the variable output to the html tag outputGames
-    document.getElementById("outputGames").innerHTML = sOutput;
-}
