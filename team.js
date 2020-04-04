@@ -59,7 +59,7 @@ class Game //The Game class will have the attributes:
     constructor(iMyScore, itScore, swOrl) //This class should have a constructor that receives all 3 parameters to populate the attributes.
     {
         //not sure if we have to call the parent class(Team)
-        super("G")//"G" is the type for game
+        //super("G")//"G" is the type for game
         this.myscore = iMyScore;
         this.theirscore = itScore;
         this.winOrloss = swOrl;
@@ -105,9 +105,13 @@ function playGame()
 
     var oTeam = new Team();
     var aoTeam = [];
+    var liID;
+
     for(iCount = 0; iCount < 10; iCount++)
     {
-        aoTeam[iCount].teamName = document.getElementById("").innerHTML;
+        liID = ("n" + (iCount+1)); 
+        
+        aoTeam[iCount].teamName = document.getElementById("liID").innerHTML;
         
         
         aoTeam[iCount].games[iCount]
