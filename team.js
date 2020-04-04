@@ -52,7 +52,7 @@ class Team //The Team class should have the following instance variables:
 
 class Game //The Game class will have the attributes:
 {
-    myscore; //my team score (int)
+    myScore; //my team score (int)
 
     theirscore; //opp team score(int)
 
@@ -60,7 +60,7 @@ class Game //The Game class will have the attributes:
 
     constructor(iMyScore, itScore, wOrL) //This class should have a constructor that receives all 3 parameters to populate the attributes.
     {
-        this.myscore = iMyScore;
+        this.myScore = iMyScore;
         this.theirscore = itScore;
         this.winOrloss = wOrL;
     }
@@ -103,26 +103,27 @@ function playGame()
     //have an object array for teams
     //have an oject of team
     //in a for loop grap the contents of the li and store the data on the new objects using the attributes. 
-
     var aoTeam = [];
-    var oTeam;
     var liID; 
+
+    for (let iListId = 0; iListId < 10; iListId++) { //loop to gather all the team names
+        oTeam = new Team();
+        aoTeam[iListId] = oTeam;
+
+        liID = ("n" + (iCountOne+1)); //variable that changes with iCountOne to change which id tag the function chooses
+        aoTeam[iListId].teamName = document.getElementById(liID).innerHTML;
+    }
 
     for (iCountOne = 0; iCountOne < 10; iCountOne++)
     {
-        liID = ("n" + (iCountOne+1)); 
-        
-        aoTeam[iCountOne].teamName = document.getElementById(liID).innerHTML;
-
-        getTeam(aoTeam[iCountOne].teamName);
-
         //Used throughout function
         var aiMyScore = [];
         var aiOppScore = [];
 
         //used when calculating score and for keeping track of what to say in output for each game
-        var iLossCount = 0; //used to keep track of num losses within loop
-        var iWinCount = 0; //used to keep track of num wis within loop
+        //var iLossCount = 0; //used to keep track of num losses within loop
+        //var homeWinstatus;
+        //var iWon = 0; //used to keep track of num wis within loop
         var asOutput = [];
 
         //Usec in last part of each iteration of top for loop
@@ -130,41 +131,41 @@ function playGame()
         var iWinPercentage;
 
         //for loop to create scores for both myTeam and Opp array, compare, and calc overtime in sub loop
-        for (let iCountTwo = 0; iCountTwo < iNumGames; iCountTwo++) {
-            if (i % 2 == 0) { //use mod to determine odd (i % 2 == 1; away) or even (i % 2 == 0; home)
-                aiMyScore[i] = Math.floor((Math.random() * 101)) + 5; //I put * 101 because the score needs to be between 0 and 100
-                aiOppScore[i] = Math.floor((Math.random() * 101));
-            } else {
-                aiMyScore[i] = Math.floor((Math.random() * 101));
-                aiOppScore[i] = Math.floor((Math.random() * 101)) + 5;
-            }
+        for  iCountTwo = 1; iCountTwo < 10; iCountTwo++) {
+            aoTeam[iCountOne].getTeam();
+            aoTeam[iCountTwo].getTeam();
 
-            var iOTCount = 0; //I declared inside loop to keep at zero each run through
-            var sOTOutput = "";
+            //use mod to determine odd (i % 2 == 1; away) or even (i % 2 == 0; home)
+            aiMyScore[iCountOne] = Math.floor((Math.random() * 101)) + 5; //I put * 101 because the score needs to be between 0 and 100
+            aiOppScore[iCountOne] = Math.floor((Math.random() * 101));
+            
+            
+            aiMyScore.push(Math.floor((Math.random() * 101)));
+            aiOppScore.push(Math.floor((Math.random() * 101)) + 5);
 
             //while two scores are even execute loop until they aren't
-            while (aiMyScore[i] == aiOppScore[i]) {
-                aiMyScore[i] = aiMyScore[i] + Math.floor((Math.random() * 16)); //put 16 so the score would be from 0 to 15
-                aiOppScore[i] = aiOppScore[i] + Math.floor((Math.random() * 16));
-                aiNumOT[i] = iOTCount + 1;
-                sOTOutput = " with " + aiNumOT[i] + " OT ";
-                iOTCount++;
+            while (aiMyScore[iCountOne] == aiOppScore[iCountOne]) {
+                aiMyScore[iCountOne] = aiMyScore[iCountOne] + Math.floor((Math.random() * 16)); //put 16 so the score would be from 0 to 15
+                aiOppScore[iCountOne] = aiOppScore[iCountOne] + Math.floor((Math.random() * 16));
+            }
+
+            while (aiMyScore[iCountTwo] == aiOppScore[iCountTwo]) {
+                aiMyScore[iCountTwo] = aiMyScore[iCountTwo] + Math.floor((Math.random() * 16)); //put 16 so the score would be from 0 to 15
+                aiOppScore[iCountTwo] = aiOppScore[iCountTwo] + Math.floor((Math.random() * 16));
             }
 
             //now time to calc the winner of two teams
-            if (aiMyScore[i] < aiOppScore[i]) {
-                iLossCount++;
-                asOutput[i] = " and Loses";
-            } else {
-                iWinCount++;
-                asOutput[i] = " and Wins";
-            }
+            if (aiMyScore[iCountOne] < aiOppScore[iCountOne]) 
+            {
+                oGame = new Game(aiMyScore[iCountOne], aiOppScore[iCountOne], "loss");
+                aoTeam[iCountOne].games.push(oGame);
 
-            //plug all this into output
-            if (i == 0) {
-                sOutput = sMyTeam + ": " + aiMyScore[i] + "-" + aiOppScore[i] + sOTOutput + asOutput[i];
+                aoTeam[iCountOne].myScore = aiMyScore
+                iLossCount++;
             } else {
-                sOutput = sOutput + "<br>" + sMyTeam + ": " + aiMyScore[i] + "-" + aiOppScore[i] + sOTOutput + asOutput[i];
+                oGame = new Game(aiOppScore[iCountOne], aiMyScore[iCountOne], "win");
+                aoTeam[iCountTwo].games.push(oGame);
+                iWinCount++;
             }
         }
 
