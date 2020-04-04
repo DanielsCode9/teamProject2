@@ -42,6 +42,8 @@ class Team(teamN, tName) //The Team class should have the following instance var
     }
 }
 
+
+
 class Game //The Game class will have the attributes:
 {
     myscore; //my team score (int)
@@ -53,16 +55,15 @@ class Game //The Game class will have the attributes:
     constructor(iMyScore, itScore, swOrl) //This class should have a constructor that receives all 3 parameters to populate the attributes.
     {
         //not sure if we have to call the parent class(Team)
+
         super("G") //"G" is the type for game
+        //super("G")//"G" is the type for game
         this.myscore = iMyScore;
         this.theirscore = itScore;
         this.winOrloss = swOrl;
     }
 }
 
-class BasketballTeam extends Team //The BasketballTeam class inherits from the Team class and add the following attributes:
-{
-    //totalPointsFor (int)
 
     //totalPointsAgainst (int)
 
@@ -89,15 +90,57 @@ class BasketballTeam extends Team //The BasketballTeam class inherits from the T
 
 function playGame() {
 
+//JADEN
+//The BasketballTeam class inherits from the Team class and adds it's own attributes to track the total points for and against teams.
+//The total points for and against teams is tracked using two separate methods that receive integer paramaters and and add them to the instance variables.
+//The third and final method returns a string to display the "total points for" and "total points against" values using instance variables.
+class BasketballTeam extends Team
+{
+    totalPointsFor;
+    totalPointsAgainst;
+
+    constructor(sTeamName, iWins, iLosses, iWinLossPct, aoGames, iTotalPointsFor, iTotalPointsAgainst)
+    {
+        super(sTeamName, iWins, iLosses, iWinLossPct, aoGames);
+        this.totalPointsFor = iTotalPointsFor;
+        this.totalPointsAgainst = iTotalPointsAgainst;
+    }
+
+   addPointsFor(iTotalPointsFor)
+   {
+        this.totalPointsFor = this.totalPointsFor + iTotalPointsFor
+   }
+
+   addPointsAgainst(iTotalPointsAgainst)
+   {
+        this.totalPointsAgainst = this.totalPointsAgainst + iTotalPointsAgainst
+   }
+
+   getAllPoints()
+   {
+        return("Total points for: " + this.totalPointsFor + "\n" + "Total points against: " + this.totalPointsAgainst);
+   }
+}
+
+
+
+function playGame()
+{   
+
+
     //have an object array for teams
     //have an oject of team
     //in a for loop grap the contents of the li and store the data on the new objects using the attributes. 
 
     var aoTeam = [];
-    //team.getTeam("byu");
-    for (let iCount = 1; iCount <= 10; iCount++) {
-        var oTeam = new Team();
-        aoTeam[iCount].teamName = document.getElementById(("n" + iCount)).innerHTML;
+    var liID;
+
+    for(iCount = 0; iCount < 10; iCount++)
+    {
+        liID = ("n" + (iCount+1)); 
+        
+        aoTeam[iCount].teamName = document.getElementById("liID").innerHTML;
+
         getTeam(aoTeam[iCount].teamName);
 
         var sMyTeam = document.getElementById("teamName").value;
