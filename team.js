@@ -49,7 +49,7 @@ class Team //The Team class should have the following instance variables:
         //calcWinLossPct - calculates and updates the winLossPct attribute
         this.wins = this.wins + NewWins;
         this.losses = this.losses + NewLosses;
-        this.winLossPct = (this.wins/ this.losses);
+        this.winLossPct = (this.wins/ this.losses); //wins/total
         return this.winLossPct;
     }
 }
@@ -164,10 +164,10 @@ function playGame()
             aoBasketballTeam[iCountOne].addPointsFor(aiTeamOneScore[(iCountOne + 1)]);//first team object uses a method to update the points for its second game. 
             aoBasketballTeam[iCountOne].addPointsAgainst(aiTeamTwoScore[(iCountOne + 1)]);//first team object uses a method to update the points for their oppenent for the second team.
             
-            aoBasketballTeam[(iCountOne + 1)].addPointsFor(aiTeamTwoScore[iCountOne]);//second team object uses a method to add their points for the first game score
-            aoBasketballTeam[(iCountOne + 1)].addPointsAgainst(aiTeamOneScore[(iCountOne)]);//Second team object uses a method to update the points against
-            aoBasketballTeam[(iCountOne + 1)].addPointsFor(aiTeamTwoScore[iCountOne]);//Second team object uses a method to update the points for its second game. 
-            aoBasketballTeam[(iCountOne + 1)].addPointsAgainst(aiTeamOneScore[(iCountOne + 1)]);//Second team object uses a method to update the points for their oppenent for the second team.
+            aoBasketballTeam[(iCountTwo)].addPointsFor(aiTeamTwoScore[iCountOne]);//second team object uses a method to add their points for the first game score
+            aoBasketballTeam[(iCountTwo)].addPointsAgainst(aiTeamOneScore[(iCountOne)]);//Second team object uses a method to update the points against
+            aoBasketballTeam[(iCountTwo)].addPointsFor(aiTeamTwoScore[(iCountOne + 1)]);//Second team object uses a method to update the points for its second game. 
+            aoBasketballTeam[(iCountTwo)].addPointsAgainst(aiTeamOneScore[(iCountOne + 1)]);//Second team object uses a method to update the points for their oppenent for the second team.
            
 
             //now time to calc the winner of two teams
@@ -216,8 +216,9 @@ function playGame()
 
             //calls the function to updatethe win/loss percent?
             aoBasketballTeam[iCountOne].calcWinLossPct(aoBasketballTeam[iCountOne].wins, aoBasketballTeam[iCountOne].losses);
-            aoBasketballTeam[(iCountOne + 1)].calcWinLossPct(aoBasketballTeam[(iCountOne)].wins, aoBasketballTeam[iCountOne].losses);
-            
+            aoBasketballTeam[(iCountTwo)].calcWinLossPct(aoBasketballTeam[(iCountTwo)].wins, aoBasketballTeam[iCountTwo].losses);
+            aiTeamOneScore = [];
+            aiTeamTwoScore = [];
         }
         //--->WE STILL NEED TO DO A BUBBLE SORT OF THE ARRAYS
 
@@ -239,6 +240,7 @@ function playGame()
         
         document.getElementById("output").innerHTML = sOutput;
     }
+}
         /*
 When the user clicks on the Play Game button you need to simulate an entire season.
 
