@@ -7,14 +7,23 @@ class Team //The Team class should have the following instance variables:
 
     games = []; //new Game();
 
+    constructor(Wins, Losses)
+    {
+        this.wins = Wins;
+        this.losses = Losses;
+    }
+
     //AND the following methods:
 
-    getTeam(tName) {
-        this.teamName = tName;
+    getTeam()
+    {
+        return this.teamName = tName;
         //getTeam - when called, it returns the team name
     }
 
-    setTeam() {
+    setTeam(tName)
+    {
+
         //setTeam - when called, it receives a parameter that is used to set the instance variable teamName
         this.teamName = tName;
     }
@@ -28,16 +37,17 @@ class Team //The Team class should have the following instance variables:
 
     getWins() {
         //getWins - when called it returns the number of wins
-        this.wins;
+        return this.wins;
     }
 
     getLosses() {
         //getLosses - when called it returns the number of losses
-        this.losses;
+        return this.losses;
     }
 
     calcWinLossPct() {
         //calcWinLossPct - calculates and updates the winLossPct attribute
+
 
     }
 }
