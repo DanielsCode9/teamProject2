@@ -77,8 +77,13 @@ class BasketballTeam extends Team
     totalPointsFor;
     totalPointsAgainst;
 
-    this.totalPointsFor = 0;
-    this.totalPointsAgainst = 0;
+    constructor(tName, numWins, numLosses)//do we need to populate with anything else at the beginning
+        {
+        super(tName, numWins, numLosses)
+        //we still need percentage variable and games array variable
+        this.totalPointsFor = 0;
+        this.totalPointsAgainst = 0;
+        }
     /* constructor(iTotalPointsFor, iTotalPointsAgainst)
     {
         //super(sTeamName, iWins, iLosses, iWinLossPct, aoGames);
@@ -111,19 +116,21 @@ function playGame()
         oBasketball = new BasketballTeam();
         aoBasketballTeam[iListId] = oBasketball;
 
-        liID = ("n" + (iCountOne+1)); //variable that changes with iCountOne to change which id tag the function chooses
+        liID = ("n" + (iListId+1)); //variable that changes with iCountOne to change which id tag the function chooses
         aoBasketballTeam[iListId].setTeam(document.getElementById(liID).innerHTML)
+        //aoBasketballTeam[iListId].push(setTeam(document.getElementById(liID).innerHTML));
         //aoBasketballTeam[iListId].teamName = document.getElementById(liID).innerHTML;
+        
     }
 
-    for (iCountOne = 0; iCountOne < 10; iCountOne++)
+    for (var iCountOne = 0; iCountOne < 10; iCountOne++)
     {
         var aiTeamOneScore = [];
         var aiTeamTwoScore = [];
         var sOutput = "";
 
         //for loop to create scores for both myTeam and Opp array, compare, and calc overtime in sub loop
-        for (iCountTwo = 1; iCountTwo < 10; iCountTwo++) {
+        for (var iCountTwo = 1; iCountTwo < 10; iCountTwo++) {
             aoBasketballTeam[iCountOne].getTeam();
             aoBasketballTeam[iCountTwo].getTeam();
 
@@ -153,14 +160,14 @@ function playGame()
             aoBasketballTeam[iCountOne].addPointsFor(aiTeamOneScore[(iCountOne + 1)]);//first team object uses a method to update the points for its second game. 
             aoBasketballTeam[iCountOne].addPointsAgainst(aiTeamTwoScore[(iCountOne + 1)]);//first team object uses a method to update the points for their oppenent for the second team.
             
-            aoBasketballTeam[(iCountOne+ 1)].addPointsFor(aiTeamTwoScore[iCountOne]);//second team object uses a method to add their points for the first game score
+            aoBasketballTeam[(iCountOne + 1)].addPointsFor(aiTeamTwoScore[iCountOne]);//second team object uses a method to add their points for the first game score
             aoBasketballTeam[(iCountOne + 1)].addPointsAgainst(aiTeamOneScore[(iCountOne)]);//Second team object uses a method to update the points against
             aoBasketballTeam[(iCountOne + 1)].addPointsFor(aiTeamTwoScore[iCountOne]);//Second team object uses a method to update the points for its second game. 
             aoBasketballTeam[(iCountOne + 1)].addPointsAgainst(aiTeamOneScore[(iCountOne + 1)]);//Second team object uses a method to update the points for their oppenent for the second team.
            
 
             //now time to calc the winner of two teams
-            if (aiTeamOneoScore[iCountOne] < aiTeamTwoScore[iCountOne]) 
+            if (aiTeamOneScore[iCountOne] < aiTeamTwoScore[iCountOne]) 
             {
                 oGame1 = new Game(aiTeamOneScore[iCountOne], aiTeamTwoScore[iCountOne], "lost");
                 oGame2 = new Game(aiTeamTwoScore[iCountOne], aiTeamOneScore[iCountOne], "win");
@@ -211,6 +218,29 @@ function playGame()
         //--->WE STILL NEED TO DO A BUBBLE SORT OF THE ARRAYS
 
         aoBasketballTeam[iCountOne].games[iCountOne];
+
+        
+        }
+        let holdTeam;
+        let iInner;
+        let iOuter;
+        let sFinished = "";
+
+        for (iOuter = 0; iOuter < (aoBasketballTeam.length - 1); iOuter++)
+            {
+                for ((iInner = iOuter + 1); iInner < aoBasketballTeam.length; iInner++)
+                    {
+                        if (aoBasketballTeam[iInner].wins > aoBasketballTeam[iOuter].wins)
+                            {
+                                holdTeam = aoBasketballTeam[iOuter]
+                                aoBasketballTeam[iOuter] = aoBasketballTeam[iInner]
+                                aoBasketballTeam[iOuter] = holdTeam
+                            }
+                    }
+                    sFinished = sFinished + aoBasketballTeam[iOuter] + "<br>";
+            }
+        
+        document.getElementById("output").innerHTML = sFinished
 
     }
         /*
