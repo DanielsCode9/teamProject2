@@ -125,7 +125,8 @@ function playGame()
         aoBasketballTeam[iListId] = oBasketball;
 
         liID = ("n" + (iListId+1)); //variable that changes with iCountOne to change which id tag the function chooses
-        aoBasketballTeam[iListId].setTeam(document.getElementById(liID).innerHTML)
+        aoBasketballTeam[iListId].setTeam(document.getElementById(liID).innerHTML);
+        aoBasketballTeam[iListId].setWinsLosses(0,0);
         //aoBasketballTeam[iListId].push(setTeam(document.getElementById(liID).innerHTML));
         //aoBasketballTeam[iListId].teamName = document.getElementById(liID).innerHTML;
         
@@ -134,8 +135,8 @@ function playGame()
     for (iCountOne = 0; iCountOne < 10; iCountOne++)
     {
         //for loop to create scores for both myTeam and Opp array, compare, and calc overtime in sub loop
-        for (iCountTwo = 1; iCountTwo < 10; iCountTwo++) {
-            aoBasketballTeam[iCountOne].getTeam();
+        for (iCountTwo = 1; iCountTwo < 9; iCountTwo++) { //YOU CHANGED THIS TO A 9 INSTEAD OF A 10
+            aoBasketballTeam[iCountOne].getTeam();  //I dont think we need to do this...
             aoBasketballTeam[iCountTwo].getTeam();
 
             //use mod to determine odd (i % 2 == 1; away) or even (i % 2 == 0; home)
@@ -174,7 +175,7 @@ function playGame()
             if (aiTeamOneScore[0] < aiTeamTwoScore[0]) 
             {
                 oGame1 = new Game(aiTeamOneScore[0], aiTeamTwoScore[0], "lost");
-                oGame2 = new Game(aiTeamTwoScore[0], aiTeamOneScore[0], "win");
+                oGame2 = new Game(aiTeamTwoScore[0], aiTeamOneScore[0], "won");
                 aoBasketballTeam[iCountOne].games.push(oGame1);
                 aoBasketballTeam[iCountTwo].games.push(oGame2);
                 //---> WE ALSO HAVE TO UPDATE THE WINS AND LOSSES FOR THE TEAMS
@@ -183,7 +184,7 @@ function playGame()
                 aoBasketballTeam[iCountTwo].wins = (aoBasketballTeam[iCountTwo].wins + 1);
              
             } else {
-                oGame1 = new Game(aiTeamOneScore[0], aiTeamTwoScore[0], "win");
+                oGame1 = new Game(aiTeamOneScore[0], aiTeamTwoScore[0], "won");
                 oGame2 = new Game(aiTeamTwoScore[0], aiTeamOneScore[0], "lost");
                 aoBasketballTeam[iCountOne].games.push(oGame1);  
                 aoBasketballTeam[iCountTwo].games.push(oGame2);
@@ -196,7 +197,7 @@ function playGame()
             if (aiTeamOneScore[1] < aiTeamTwoScore[1]) 
             {
                 oGame1 = new Game(aiTeamOneScore[1], aiTeamTwoScore[1], "lost");
-                oGame2 = new Game(aiTeamTwoScore[1], aiTeamOneScore[1], "win");
+                oGame2 = new Game(aiTeamTwoScore[1], aiTeamOneScore[1], "won");
                 aoBasketballTeam[iCountOne].games.push(oGame1);
                 aoBasketballTeam[iCountTwo].games.push(oGame2);
                 //updates the wins and losses?
@@ -205,7 +206,7 @@ function playGame()
                 
              
             } else {
-                oGame1 = new Game(aiTeamOneScore[1], aiTeamTwoScore[1], "win");
+                oGame1 = new Game(aiTeamOneScore[1], aiTeamTwoScore[1], "won");
                 oGame2 = new Game(aiTeamTwoScore[1], aiTeamOneScore[1], "lost");
                 aoBasketballTeam[iCountOne].games.push(oGame1);
                 aoBasketballTeam[iCountTwo].games.push(oGame2);
@@ -234,7 +235,7 @@ function playGame()
                                 aoBasketballTeam[iInner] = holdTeam;
                             }
                     }
-                    sOutput = (sOutput + aoBasketballTeam[iOuter].teamName + " " + aoBasketballTeam[iOuter].wins + "<br>");
+                    sOutput = (sOutput + aoBasketballTeam[iOuter].getTeam() + " " + aoBasketballTeam[iOuter].getWins() + "<br>");
             }
         
         document.getElementById("output").innerHTML = sOutput;
