@@ -49,7 +49,7 @@ class Team //The Team class should have the following instance variables:
         //calcWinLossPct - calculates and updates the winLossPct attribute
         this.wins = this.wins + NewWins;
         this.losses = this.losses + NewLosses;
-        this.winLossPct = (this.wins/ this.losses); //wins/total
+        this.winLossPct = (this.wins/ (this.losses + this.wins)); //wins/total
         return this.winLossPct;
     }
 }
