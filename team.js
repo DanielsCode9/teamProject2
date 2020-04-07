@@ -90,12 +90,6 @@ class BasketballTeam extends Team
         this.totalPointsFor = 0;
         this.totalPointsAgainst = 0;
         }
-    /* constructor(iTotalPointsFor, iTotalPointsAgainst)
-    {
-        //super(sTeamName, iWins, iLosses, iWinLossPct, aoGames);
-        this.totalPointsFor = iTotalPointsFor;
-        this.totalPointsAgainst = iTotalPointsAgainst;
-    } */
 
    addPointsFor(iTotalPointsFor)
    {
@@ -182,8 +176,9 @@ function playGame()
                 aoBasketballTeam[iCountTwo].games.push(oGame2);
                 //---> WE ALSO HAVE TO UPDATE THE WINS AND LOSSES FOR THE TEAMS
                 //updates the wins and losses?
-                aoBasketballTeam[iCountOne].losses = (aoBasketballTeam[iCountOne].losses + 1);
-                aoBasketballTeam[iCountTwo].wins = (aoBasketballTeam[iCountTwo].wins + 1);
+                aoBasketballTeam[iCountOne].calcWinLossPct(0, 1);
+                aoBasketballTeam[iCountTwo].calcWinLossPct(1, 0);
+                
              
             } else {
                 oGame1 = new Game(aiTeamOneScore[0], aiTeamTwoScore[0], "won");
@@ -191,8 +186,9 @@ function playGame()
                 aoBasketballTeam[iCountOne].games.push(oGame1);  
                 aoBasketballTeam[iCountTwo].games.push(oGame2);
                 //updates the wins and losses?
-                aoBasketballTeam[iCountOne].wins = (aoBasketballTeam[iCountOne].wins + 1);
-                aoBasketballTeam[iCountTwo].losses = (aoBasketballTeam[iCountTwo].losses + 1);
+                aoBasketballTeam[iCountOne].calcWinLossPct(1, 0);
+                aoBasketballTeam[iCountTwo].calcWinLossPct(0, 1);
+                
                       }
 
             //if statement for the second team to be given to the oteam and ogame functions
@@ -203,8 +199,9 @@ function playGame()
                 aoBasketballTeam[iCountOne].games.push(oGame1);
                 aoBasketballTeam[iCountTwo].games.push(oGame2);
                 //updates the wins and losses?
-                aoBasketballTeam[iCountOne].losses = (aoBasketballTeam[iCountOne].losses + 1);
-                aoBasketballTeam[iCountTwo].wins = (aoBasketballTeam[iCountTwo].wins + 1);
+                aoBasketballTeam[iCountOne].calcWinLossPct(0, 1);
+                aoBasketballTeam[iCountTwo].calcWinLossPct(1, 0);
+                
                 
              
             } else {
@@ -213,13 +210,14 @@ function playGame()
                 aoBasketballTeam[iCountOne].games.push(oGame1);
                 aoBasketballTeam[iCountTwo].games.push(oGame2);
                 //updates the wins and losses?
-                aoBasketballTeam[iCountOne].wins = (aoBasketballTeam[iCountOne].wins + 1);
-                aoBasketballTeam[iCountTwo].losses = (aoBasketballTeam[iCountTwo].losses + 1);
+                aoBasketballTeam[iCountOne].calcWinLossPct(0, 1);
+                aoBasketballTeam[iCountTwo].calcWinLossPct(1, 0);
+                
             }
 
             //calls the function to updatethe win/loss percent
-            aoBasketballTeam[iCountOne].calcWinLossPct(aoBasketballTeam[iCountOne].wins, aoBasketballTeam[iCountOne].losses);
-            aoBasketballTeam[(iCountTwo)].calcWinLossPct(aoBasketballTeam[(iCountTwo)].wins, aoBasketballTeam[iCountTwo].losses);
+            //aoBasketballTeam[iCountOne].calcWinLossPct(aoBasketballTeam[iCountOne].wins, aoBasketballTeam[iCountOne].losses);
+            //aoBasketballTeam[(iCountTwo)].calcWinLossPct(aoBasketballTeam[(iCountTwo)].wins, aoBasketballTeam[iCountTwo].losses);
 
             //reset the arrays that keep track of the scores
             aiTeamOneScore = [];
@@ -227,6 +225,7 @@ function playGame()
         }
 
        // aoBasketballTeam[iCountOne].games[iCountOne];
+        var holdTeam;
 
         for (iOuter = 0; iOuter < (aoBasketballTeam.length - 1); iOuter++)
             {
