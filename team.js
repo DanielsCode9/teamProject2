@@ -211,8 +211,8 @@ function playGame()
                 aoBasketballTeam[iCountOne].games.push(oGame1);
                 aoBasketballTeam[iCountTwo].games.push(oGame2);
                 //updates the wins and losses
-                aoBasketballTeam[iCountOne].calcWinLossPct(0, 1);
-                aoBasketballTeam[iCountTwo].calcWinLossPct(1, 0);
+                aoBasketballTeam[iCountOne].calcWinLossPct(1,0);
+                aoBasketballTeam[iCountTwo].calcWinLossPct(0,1);
                 
             }
 
@@ -222,7 +222,7 @@ function playGame()
         }
 
        // aoBasketballTeam[iCountOne].games[iCountOne];
-       // var holdTeam;
+       var holdTeam;
 
         for (iOuter = 0; iOuter < (aoBasketballTeam.length - 1); iOuter++)
             {
@@ -235,7 +235,6 @@ function playGame()
                                 aoBasketballTeam[iInner] = holdTeam;
                             }
                     }
-                    //does this need to be 
             }
 
         var sOutput = "";
