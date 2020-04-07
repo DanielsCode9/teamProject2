@@ -133,10 +133,12 @@ function playGame()
     {
         //for loop to create scores for both myTeam and Opp array, compare, and calc overtime in sub loop
         for (iCountTwo = 1; iCountTwo < 9; iCountTwo++) { //YOU CHANGED THIS TO A 9 INSTEAD OF A 10
+           
+            while (iCountOne != iCountTwo)
+            {
             aoBasketballTeam[iCountOne].getTeam();  //I dont think we need to do this...
             aoBasketballTeam[iCountTwo].getTeam();
 
-            //use mod to determine odd (i % 2 == 1; away) or even (i % 2 == 0; home)
             aiTeamOneScore[0] = Math.floor((Math.random() * 101)+ 5); //I put * 101 because the score needs to be between 0 and 100
             aiTeamTwoScore[0] = Math.floor((Math.random() * 101));
             
@@ -220,13 +222,14 @@ function playGame()
             aiTeamOneScore = [];
             aiTeamTwoScore = [];
         }
+        }
 
        // aoBasketballTeam[iCountOne].games[iCountOne];
        var holdTeam;
 
         for (iOuter = 0; iOuter < (aoBasketballTeam.length - 1); iOuter++)
             {
-                for (iInner = 1; iInner < aoBasketballTeam.length; iInner++)
+                for (iInner = (iOuter + 1); iInner < aoBasketballTeam.length; iInner++)
                     {
                         if (aoBasketballTeam[iInner].wins > aoBasketballTeam[iOuter].wins)
                             {
@@ -240,7 +243,7 @@ function playGame()
         var sOutput = "";
         
         for (let iCountOneMillion = 0; iCountOneMillion < aoBasketballTeam.length; iCountOneMillion++) {
-            sOutput = (sOutput + aoBasketballTeam[iCountOneMillion].getTeam() + " " + aoBasketballTeam[iCountOneMillion].getWins() + "<br>");
+            sOutput = (sOutput + aoBasketballTeam[iCountOneMillion].teamName + " " + aoBasketballTeam[iCountOneMillion].getWins() + "<br>");
         }
         
         document.getElementById("output").innerHTML = sOutput;
