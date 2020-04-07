@@ -52,6 +52,7 @@ class Team //The Team class should have the following instance variables:
         this.wins = this.wins + NewWins;
         this.losses = this.losses + NewLosses;
         this.winLossPct = (this.wins/ (this.losses + this.wins)); //wins/total
+        // PUSH THIS TO THE ORIGIN
         return this.winLossPct;
     }
 }
@@ -123,8 +124,8 @@ function playGame()
         liID = ("n" + (iListId+1)); //variable that changes with iCountOne to change which id tag the function chooses
         aoBasketballTeam[iListId].setTeam(document.getElementById(liID).innerHTML);
         aoBasketballTeam[iListId].setWinsLosses(0,0);
-        //aoBasketballTeam[iListId].push(setTeam(document.getElementById(liID).innerHTML));
-        //aoBasketballTeam[iListId].teamName = document.getElementById(liID).innerHTML;
+            // does it not already inherit wins and losses?
+        
         
     }
 
