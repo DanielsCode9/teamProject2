@@ -133,9 +133,6 @@ function playGame()
     {
         //for loop to create scores for both myTeam and Opp array, compare, and calc overtime in sub loop
         for (iCountTwo = iCountOne + 1; iCountTwo < 10; iCountTwo++) { 
-           
-           // while (iCountOne !== iCountTwo)
-           // {
             aoBasketballTeam[iCountOne].getTeam();  //I dont think we need to do this...
             aoBasketballTeam[iCountTwo].getTeam();
 
@@ -221,7 +218,7 @@ function playGame()
             //reset the arrays that keep track of the scores
             aiTeamOneScore = [];
             aiTeamTwoScore = [];
-       // }
+            }
         }
 
        // aoBasketballTeam[iCountOne].games[iCountOne];
@@ -248,7 +245,6 @@ function playGame()
         
         document.getElementById("output").innerHTML = sOutput;
     }
-}
         /*
 When the user clicks on the Play Game button you need to simulate an entire season.
 
