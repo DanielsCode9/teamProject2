@@ -129,13 +129,13 @@ function playGame()
         
     }
 
-    for (iCountOne = 0; iCountOne < 10; iCountOne++)
+    for (iCountOne = 0; iCountOne < 9; iCountOne++)
     {
         //for loop to create scores for both myTeam and Opp array, compare, and calc overtime in sub loop
-        for (iCountTwo = 1; iCountTwo < 9; iCountTwo++) { //YOU CHANGED THIS TO A 9 INSTEAD OF A 10
+        for (iCountTwo = iCountOne + 1; iCountTwo < 10; iCountTwo++) { 
            
-            while (iCountOne != iCountTwo)
-            {
+           // while (iCountOne !== iCountTwo)
+           // {
             aoBasketballTeam[iCountOne].getTeam();  //I dont think we need to do this...
             aoBasketballTeam[iCountTwo].getTeam();
 
@@ -221,7 +221,7 @@ function playGame()
             //reset the arrays that keep track of the scores
             aiTeamOneScore = [];
             aiTeamTwoScore = [];
-        }
+       // }
         }
 
        // aoBasketballTeam[iCountOne].games[iCountOne];
