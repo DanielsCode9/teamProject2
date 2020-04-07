@@ -28,6 +28,8 @@ class Team //The Team class should have the following instance variables:
         this.teamName = tName;
     }
 
+    // we need to figure out why numWins isn't calculating right
+
     setWinsLosses(numWins, numLosses) {
         //setWinsLosses - when called it receives TWO parameters used to set the wins and the losses instance variables. Wins is the first parameter and Losses is the second parameter. This method will also calculate the winLossPct Instance variable.
         this.wins = numWins;
@@ -141,12 +143,12 @@ function playGame()
             aoBasketballTeam[iCountTwo].getTeam();
 
             //use mod to determine odd (i % 2 == 1; away) or even (i % 2 == 0; home)
-            aiTeamOneScore[0] = Math.floor((Math.random() * 101)) + 5; //I put * 101 because the score needs to be between 0 and 100
+            aiTeamOneScore[0] = Math.floor((Math.random() * 101)+ 5); //I put * 101 because the score needs to be between 0 and 100
             aiTeamTwoScore[0] = Math.floor((Math.random() * 101));
             
             
             aiTeamOneScore[1] = Math.floor((Math.random() * 101));
-            aiTeamTwoScore[1] = Math.floor((Math.random() * 101)) + 5;
+            aiTeamTwoScore[1] = Math.floor((Math.random() * 101)+ 5);
 
             //while two scores are even execute loop until they aren't
             while (aiTeamOneScore[0] == aiTeamTwoScore[0]) {
@@ -216,9 +218,11 @@ function playGame()
                 aoBasketballTeam[iCountTwo].losses = (aoBasketballTeam[iCountTwo].losses + 1);
             }
 
-            //calls the function to updatethe win/loss percent?
+            //calls the function to updatethe win/loss percent
             aoBasketballTeam[iCountOne].calcWinLossPct(aoBasketballTeam[iCountOne].wins, aoBasketballTeam[iCountOne].losses);
             aoBasketballTeam[(iCountTwo)].calcWinLossPct(aoBasketballTeam[(iCountTwo)].wins, aoBasketballTeam[iCountTwo].losses);
+
+            //reset the arrays that keep track of the scores
             aiTeamOneScore = [];
             aiTeamTwoScore = [];
         }
@@ -227,7 +231,7 @@ function playGame()
 
         for (iOuter = 0; iOuter < (aoBasketballTeam.length - 1); iOuter++)
             {
-                for ((iInner = iOuter + 1); iInner < aoBasketballTeam.length; iInner++)
+                for (iInner = 1; iInner < aoBasketballTeam.length; iInner++)
                     {
                         if (aoBasketballTeam[iInner].wins > aoBasketballTeam[iOuter].wins)
                             {
@@ -236,6 +240,7 @@ function playGame()
                                 aoBasketballTeam[iInner] = holdTeam;
                             }
                     }
+                    //does this need to be 
                     sOutput = (sOutput + aoBasketballTeam[iOuter].getTeam() + " " + aoBasketballTeam[iOuter].getWins() + "<br>");
             }
         
